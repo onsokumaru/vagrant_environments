@@ -1,0 +1,9 @@
+---
+- name: Parent Playbook
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Include Tasks for Installing Core Packages
+      include_tasks: ../tasks/main.yml
