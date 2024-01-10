@@ -1,0 +1,16 @@
+---
+- name: Confirm communication with node
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Print Distribution
+      ansible.builtin.debug:
+        msg: "Node is running: {{ dist }} {{ ver }}"
+      vars:
+        dist: "{{ ansible_distribution }}"
+        ver: "{{ ansible_distribution_version }}"
+
+    - name: Print Ansible User
+      ansible.builtin.debug:
+        msg: "Ansible user is: {{ ansible_user }}"

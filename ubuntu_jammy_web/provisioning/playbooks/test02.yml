@@ -1,0 +1,13 @@
+---
+- name: Update and Upgrade Packages
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update Package Cache
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Upgrade Older Packages
+      ansible.builtin.apt:
+        upgrade: true
