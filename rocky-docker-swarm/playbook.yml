@@ -1,0 +1,23 @@
+---
+- name: Example Playbook
+  hosts: all
+  become: true
+  tasks:
+    - name: Update all packages
+      yum:
+        name: "*"
+        state: latest
+
+    - name: Install EPEL repository
+      yum:
+        name: epel-release
+        state: present
+
+    - name: Install basic packages
+      yum:
+        name: 
+          - vim
+          - git
+          - curl
+        state: present
+

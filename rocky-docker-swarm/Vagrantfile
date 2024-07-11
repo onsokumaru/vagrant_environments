@@ -1,0 +1,38 @@
+# Vagrantfile
+class VagrantPlugins::ProviderVirtualBox::Action::Network
+  def dhcp_server_matches_config?(dhcp_server, config)
+    true
+  end
+end
+Vagrant.configure("2") do |config|
+  # Define the base box
+  config.vm.box = "generic/rocky9"
+
+  # Define the first machine
+  config.vm.define "rocky1" do |rocky1|
+    rocky1.vm.hostname = "rocky1"
+    rocky1.vm.network "private_network", type: "dhcp"
+    rocky1.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+
+  # Define the second machine
+  config.vm.define "rocky2" do |rocky2|
+    rocky2.vm.hostname = "rocky2"
+    rocky2.vm.network "private_network", type: "dhcp"
+    rocky2.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+
+  # Define the third machine
+  config.vm.define "rocky3" do |rocky3|
+    rocky3.vm.hostname = "rocky3"
+    rocky3.vm.network "private_network", type: "dhcp"
+    rocky3.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+    end
+  end
+end
+
